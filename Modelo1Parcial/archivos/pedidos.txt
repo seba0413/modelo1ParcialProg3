@@ -1,0 +1,8 @@
+tablet;50;3
+notebook;30;2
+teclado;80;5
+monitor;60;1
+penDrive;100;4
+auriculares;150;6
+parlantes;90;1
+cds;500;5
