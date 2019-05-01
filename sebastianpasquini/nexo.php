@@ -36,7 +36,15 @@ if($dato == 'POST')
             $servicio->cargarTipoServicio($pathServicio, $tipo);
         break;
 
-        case '':
+        case 'modificarVehiculo':
+            $marca = $_POST['marca'];
+            $modelo = $_POST['modelo'];
+            $patente = $_POST['patente'];
+            $precio = $_POST['precio'];
+            $foto = $_FILES['foto'];
+            $vehiculo = new Vehiculo();
+            $vehiculo->constructor($marca, $modelo, $patente, $precio);
+            $vehiculo->modificarVehiculo($pathVehiculo, $foto);
         break;
     }
 }
@@ -54,25 +62,20 @@ else
         case 'sacarTurno':
             $patente = $_GET['patente'];
             $fecha = $_GET['fecha'];
-            $turno = new Turno();
-            $turno->constructor($patente, $fecha);
-            $turno->sacarTurno($pathVehiculo, $pathTurno);
-            
+            Turno::sacarTurno($pathTurno, $pathVehiculo, $fecha, $patente);            
         break;
 
         case 'turnos':
-            $turnos = Turno::listarturnos($pathTurno);
-            Turno::mostrarDatosTurnos($turnos);         
+            Turno::turnos($pathTurno);         
         break;
 
         case 'inscripciones':
             $dato = $_GET['dato'];
-            Turno::inscripciones($pathTurno, $dato);
-           
+            Turno::inscripciones($pathTurno, $dato);           
         break;
 
-        case '':
-
+        case 'vehiculos':
+            Vehiculo::vehiculos($pathVehiculo);
         break;
     }
 }
